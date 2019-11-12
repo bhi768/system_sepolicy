@@ -35,6 +35,7 @@ allow lmkd cgroup:file r_file_perms;
 allow lmkd self:global_capability_class_set sys_nice;
 
 allow lmkd proc_zoneinfo:file r_file_perms;
+allow lmkd proc_vmstat:file r_file_perms;
 
 # Set sys.lmk.* properties.
 set_prop(lmkd, system_lmk_prop)
@@ -46,6 +47,9 @@ allow lmkd domain:file { open read };
 # live lock watchdog process allowed to dump process trace and
 # reboot because orderly shutdown may not be possible.
 allow lmkd proc_sysrq:file rw_file_perms;
+
+# Read /proc/lowmemorykiller
+allow lmkd proc_lowmemorykiller:file r_file_perms;
 
 # Read /proc/meminfo
 allow lmkd proc_meminfo:file r_file_perms;
